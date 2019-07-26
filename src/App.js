@@ -1,23 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useMemo, useCallback, useEffect } from "react";
 
+
+import "./App.css";
+let renderCount = 0;
 function App() {
+  const [i, setI] = useState(0);
+
+  const callBackClick = useCallback(() => {
+    console.log('called')
+    setI(c => c + 1);
+  }, [i]);
+
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h3> Use Memo</h3>
+        <h2>i: {i}</h2>
+        <button onClick={callBackClick}>Increment I</button>
+
+
       </header>
     </div>
   );
